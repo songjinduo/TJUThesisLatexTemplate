@@ -3,26 +3,34 @@
 %%  可通过增加或减少 setup/format.tex中的
 %%  第274行 \setlength{\@title@width}{8cm}中 8cm 这个参数来 控制封面中下划线的长度。
 
-\cheading{天津大学~2016~届本科生毕业论文}      % 设置正文的页眉，需要填上对应的毕业年份
-\ctitle{基于顾客有限理性预期的定价与供应链结构}    % 封面用论文标题，自己可手动断行
-\caffil{管理与经济学部} % 学院名称
-\csubject{工业工程}   % 专业名称
-\cgrade{2012~级}            % 年级
-\cauthor{秦昱博}            % 学生姓名
-\cnumber{3012209017}        % 学生学号
-\csupervisor{杨道箭}        % 导师姓名
-\crank{副教授}              % 导师职称
+\cheading{天津大学~2020~届本科生毕业论文}      % 设置正文的页眉，需要填上对应的毕业年份
+\ctitle{基于图卷积网络的多标签图像识别算法的研究}    % 封面用论文标题，自己可手动断行
+\caffil{智能与计算学部} % 学院名称
+\csubject{计算机科学与技术专业}   % 专业名称
+\cgrade{2016~级}            % 年级
+\cauthor{高飞}            % 学生姓名
+\cnumber{3016216103}        % 学生学号
+\csupervisor{张长青}        % 导师姓名
+\crank{讲师}              % 导师职称
 
 \cdate{\the\year~年~\the\month~月~\the\day~日}
 
 \cabstract{
-中文摘要一般在~400~字以内，简要介绍毕业论文的研究目的、方法、结果和结论，语言力求精炼。中英文摘要均要有关键词，一般为~3~—~7~个。字体为小四号宋体，各关键词之间要有分号。英文摘要应与中文摘要相对应，字体为小四号~Times New Roman，详见模板。
+近年来移动互联网技飞速断普及并深深的融入人们日常生活中，海量的图像等网络信息成为了人们最多对生活产物。人们热衷于在微博、微信、Facebook、抖音等社交和短视频软件上通过图片、视频分享生活，图像作为传输信息的载体，包含了丰富的内容，怎样才能从大量图像信息中得到人们所需要的信息变得越来越困难，所以在计算机的视觉领域中怎样自动对图像进行识别有着非常重大的意义。于此同时，在我们现实中的图像信息内容更加复杂，很多时候都存在着大小、比例、遮挡等问题，这使得图像分类方式的研究更具有挑战性和现实意义。同样使得分类逐渐成为人工智能领域一个重要研究方向，并成为了机器学习和模式识别的基本问题。
+
+经历数十年的发展，研究单标签分类已经到了普遍认识和应用。在近些年来，得益于深度卷积神经网络的成功，深度单标签方法的性能增益远胜于使用手工制作特征的传统方法。多标签图像分类问题，是为了解决一个图像与多个标签同时关联的问题。在现实生活中，多标签问题出现普遍且比单一标签复杂，所以在实践活动中更加具有挑战性。
+
+本篇文章讨论了标签图像分类的研究背景以及其现状。介绍了多种基于问题转化以及算法适应的多标签分类方法，讨论并分析了这些方法中一些重要理论与关键技术，以及这些方法的优劣处，并且对于标签之间的相关性以及怎样利用标签相关性提升分类精度，基于此介绍并尝试了一种以图卷积网络（GCN）为基础的多标签分类模型。这种模型在对象标签上建立了有向图，每一个节点（标签）由标签的字嵌入来表示，并学习GCN将这种标签图映射到一组相互依赖的对象分类器中。这些分类器应用到另一个子网提取的图像描述符，让整个网络能够端到端地训练。与此同时还提出了一种新的重加权方案来建立一个有效的标签相关矩阵来指导GCN中节点间的信息传播。
+
 }
 
 \ckeywords{关键词~1；关键词~2；关键词~3；……；关键词~7（关键词总共~3~—~7~个，最后一个关键词后面没有标点符号）}
 
 \eabstract{
-The upper bound of the number of Chinese characters is 400. The abstract aims at introducing the research purpose, research methods, research results, and research conclusion of graduation thesis, with refining words. Generally speaking, both the Chinese and English abstracts require the keywords, the number of which varies from 3 to 7, with a semicolon between adjacent words. The font of the English Abstract is Times New Roman, with the size of 12pt(small four).
+In recent years, mobile Internet technology has been rapidly popularized and deeply integrated into People's Daily life. Massive images and other network information have become the most popular products of people's life.People interested in weibo, WeChat, Facebook, trill and other social and short video software through pictures, video, share life, image as a carrier of information transmission, contains a rich content, how can you get from a large number of image information people the information they need to become more and more difficult, so how to automatically in the field of computer vision to image recognition is of very important significance.At the same time, the image information content in our reality is more complex, and in many cases there are problems such as size, proportion and occlusion, which makes the study of image classification more challenging and of practical significance. It also makes classification become an important research direction in the field of artificial intelligence and a basic problem of machine learning and pattern recognition.
+After decades of development, single label classification has been widely recognized and applied. In recent years, thanks to the success of deep convolutional neural networks, the performance gains of the deep single-label approach have been much better than those of traditional methods that use hand-crafted features. Multi-label image classification problem is to solve the problem that an image is associated with multiple tags at the same time. In real life, multi-label problem is common and more complex than single label, so it is more challenging in practice.
+This paper discusses the background and current situation of tag image classification. Algorithms based on problem and introduces a variety of adaptive tabbed classification method, the discussion and analyses of these methods in some important theories and key technologies, as well as the advantages and disadvantages of these methods, and for the relationship between the tag and how to use the label correlation improve classification accuracy, based on the introduction and tried a in convolution network (GCN) on the basis of tabbed classification model.This model builds directed graphs on object labels, with each node (label) represented by the tag's word embedding, and learns that GCN maps this label graph into a set of interdependent object classifiers.These classifiers are applied to image descriptors extracted from another subnet, enabling the entire network to be trained end-to-end.At the same time, a new reweighting scheme is proposed to establish an effective label correlation matrix to guide the information transmission between nodes in GCN
+
 }
 
 \ekeywords{keyword 1, keyword 2, keyword 3, ……, keyword 7 (no punctuation at the end)}
