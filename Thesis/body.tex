@@ -77,7 +77,7 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 \begin{figure}[htbp!]
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/p2-1.png}
-	\caption{多标签数据集例子}
+	\caption{多标签数据集例子}\label{fig:p2-1}
 	\vspace{-1em}
 \end{figure}
 
@@ -85,8 +85,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p2-1.png}
-	\caption{BR转换的结果}\label{table}
+	\includegraphics[width=0.75\textwidth]{figures/p2-2.png}
+	\caption{BR转换的结果}\label{fig:p2-2}
 	\vspace{-1em}
 \end{figure}
 
@@ -94,8 +94,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{BR改进转换结果}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p2-3.png}
+	\caption{BR改进转换结果}\label{fig:p2-3}
 	\vspace{-1em}
 \end{figure}
 
@@ -103,8 +103,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{一个多标签数据集}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p2-4.png}
+	\caption{一个多标签数据集}\label{fig:p2-4}
 	\vspace{-1em}
 \end{figure}
 
@@ -112,8 +112,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{ECC转换结果}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p2-5.png}
+	\caption{ECC转换结果}\label{fig:p2-5}
 	\vspace{-1em}
 \end{figure}
 
@@ -123,8 +123,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{LP转换结果}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p2-6.png}
+	\caption{LP转换结果}\label{fig:p2-6}
 	\vspace{-1em}
 \end{figure}
 
@@ -132,8 +132,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{LP概率分布方法}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p2-7.png}
+	\caption{LP概率分布方法}\label{fig:p2-7}
 	\vspace{-1em}
 \end{figure}
 
@@ -149,8 +149,8 @@ BR算法是将多标记问题当做多个单标记问题，然后分别给每一
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{图分块识别框架模型}\label{fig:simuP1P2Result}
+	\includegraphics[width=7cm,height=10cm]{figures/p2-8.png}
+	\caption{图分块识别框架模型}\label{fig:p2-8}
 	\vspace{-1em}
 \end{figure}
 
@@ -202,9 +202,11 @@ L(y,f(x)) = (y-f(x))^2
 在这一章节中我们主要研究介绍一种基于图卷积网络（GCN）的全新模型，即 ML-GCN（Multi-Label Graph Convolutional Network），用于建立多标签之间的相关性，ML-GCN模型不仅具备较好可扩展性，而且还有较强灵活性。在该方法中，对象分类器不再作为作为一组需要独立学习的参数向量，我们更多的是运用基于GCN的映射函数，从过去的标签中捕获相互依赖的对象分类器。接下来我们把学习得到的的分类器再应用于另一个子网络生成的图像中再现语句，最终可以实现端到端训练。该方法通过嵌入到分类器的映射参数在所有类之间共享的特性对标签相关性进行了隐式建模。与此同时，出于达到明确地建模分类器学习的标签相关性的目的，我们还设计了标签相关矩阵来，通过该矩阵指导GCN中节点间的信息传播。详细的说就是通过重新加权的方案把节点和它的邻域之间的权重做了平衡，从而进行节点特征更新，这使得过度拟合和过度平滑问题得到有效缓解。
 对于“如何有效获取目标标签之间的相关性”以及“如何利用这些标签相关性提升分类表现”这两个多标签图像识别的基础问题。该模型主要从一下三个方面设计：
 
-1、通过图链接网络来对标签之间的相关性进行建模。从而使得我们可以灵活地获取标签空间中的拓扑结构。并将图中的每个节点（标签）都表示为该标签的词嵌入向量，并提出使用 GCN 直接将词嵌入向量映射到一组互相依赖的分类器上，这些分类器进一步又可直接应用于图像特征以进行分类。
-2、由于从词嵌入向量到分类器的映射参数在所有类别中是共享的，所以习得的分类器能够在词嵌入空间中（语义相关的概念在词嵌入空间中彼此临近）保留较弱的语义结构。与此同时，对于可以对标签依赖性进行隐式建模的分类器函数，所有分类器的梯度都会对它产生影响。
-3、基于标签的共现模式，我们通过新的标签相关系数矩阵，使得GCN建模标签相关性被显示运用，让节点的特征在更新时也能从相关联的节点吸收信息。
+1)通过图链接网络来对标签之间的相关性进行建模。从而使得我们可以灵活地获取标签空间中的拓扑结构。并将图中的每个节点（标签）都表示为该标签的词嵌入向量，并提出使用 GCN 直接将词嵌入向量映射到一组互相依赖的分类器上，这些分类器进一步又可直接应用于图像特征以进行分类。
+
+2) 由于从词嵌入向量到分类器的映射参数在所有类别中是共享的，所以习得的分类器能够在词嵌入空间中（语义相关的概念在词嵌入空间中彼此临近）保留较弱的语义结构。与此同时，对于可以对标签依赖性进行隐式建模的分类器函数，所有分类器的梯度都会对它产生影响。
+
+3) 基于标签的共现模式，我们通过新的标签相关系数矩阵，使得GCN建模标签相关性被显示运用，让节点的特征在更新时也能从相关联的节点吸收信息。
 
 \section{图卷积网络GCN介绍}
 在\cite{Li2014Multi}中引入了Graph Convolutional Network (GCN)来进行半监督分类。通过在节点之间传播信息来更新节点表示是这种算法的核心思想，与在一张图像局部欧氏结构之上进行操作的标准卷积方法不同的是GCN方法的目标是学习一个图G的函数f()。该函数的输入是特征描述  和相关系数矩阵
@@ -228,7 +230,7 @@ H^{l+1} = h(\hat{A}H^l W^l)
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
+	\includegraphics[width=0.75\textwidth]{figures/p3-1.jpg}
 	\caption{用于多标签图像识别的 ML-GCN 模型整体框架}\label{fig:simuP1P2Result}
 	\vspace{-1em}
 \end{figure}
@@ -257,8 +259,8 @@ GCN的工作原理是基于相关矩阵在节点间传播信息。所以在GCN�
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{图9}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p3-2.png}
+	\caption{图9}\label{fig:pic9}
 	\vspace{-1em}
 \end{figure}
 
@@ -304,8 +306,8 @@ A'_{ij} =\left\{
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	%\caption{}\label{fig:simuP1P2Result}
+	\includegraphics[width=6cm, height=4cm]{figures/123.png}
+	%\caption{}\label{fig:123}
 	\vspace{-1em}
 \end{figure}
 
@@ -340,15 +342,15 @@ ML-GCN由两个输出维度分别为1024和2048的GCN层组成。对于标签表
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{COCO数据集中的结果}\label{fig:simuP1P2Result}
+	\includegraphics[width=14cm, height=5cm]{figures/p4-1.png}
+	\caption{COCO数据集中的结果}\label{fig:p4-1}
 	\vspace{-1em}
 \end{figure}
 
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{VOC 2007数据集中结果}\label{fig:simuP1P2Result}
+	\includegraphics[width=14cm, height=6cm]{figures/p4-2.png}
+	\caption{VOC 2007数据集中结果}\label{fig:p4-2}
 	\vspace{-1em}
 \end{figure}
 
@@ -361,35 +363,50 @@ ML-GCN由两个输出维度分别为1024和2048的GCN层组成。对于标签表
 
 我们研究了不同阈值$\tau$的影响。对于相关矩阵二值化，我们在第三章等式（7）中改变阈值$\tau$的值，并在图10中显示结果。注意，如果我们不过滤任何边，模型就不会收敛。因此，该图中没有$\tau=0$的结果。正如图10所示，在滤除噪声边缘，使得多标签识别的精度精度提高。然而，当过多的边缘被过滤掉时，由于相关的邻域也会被忽略，所以精度会下降。MS-COCO和VOC 2007的$\tau$的最佳值均为0.4
 
-\begin{figure}[htbp!]
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{在COCO数据集中 }\label{fig:simuP1P2Result}
-	\vspace{-1em}
+	\subfigure[在COCO数据集中]{
+		\begin{minipage}[t]{0.5\linewidth}
+			\centering
+			\includegraphics[width=7cm, height=6cm]{figures/p4-3a.jpg}
+			%\caption{fig1}
+		\end{minipage}%
+	}%
+	\subfigure[在VOC数据集中比]{
+		\begin{minipage}[t]{0.5\linewidth}
+			\centering
+			\includegraphics[width=7cm, height=6cm]{figures/p4-3b.jpg}
+			%\caption{fig2}
+		\end{minipage}%
+	}%
+	 
+	\centering
+	\caption{不同T值精度比较}
 \end{figure}
 
-\begin{figure}[htbp!]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{在VOC数据集中比}\label{fig:simuP1P2Result}
-	\vspace{-1em}
-\end{figure}
 
 \subsection{不同p对相关矩阵重加权的影响}
 不同p对相关矩阵重加权的影响为了探讨第三章公式（8）中p的不同值对多标签分类精度的影响，我们改变了{0,0.1,0.2,…,0.9,1}中p的值，如图11所示。一般来说，此图显示在更新GCN中的节点特征时，平衡节点本身和邻域之间的权重的重要性。在实验中，我们通过交叉验证来选择p的最优值。我们可以看到，当p=0.2时，它在MS-COCO和VOC 2007上都能达到最佳性能。如果p太小，则图的节点（标签）无法从相关节点（标签）获得足够的信息。而如果p值太大，则会导致过度平滑。
 
-\begin{figure}[htbp!]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{在COCO数据集中 }\label{fig:simuP1P2Result}
-	\vspace{-1em}
-\end{figure}
 
-\begin{figure}[htbp!]
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{在VOC数据集中比}\label{fig:simuP1P2Result}
-	\vspace{-1em}
+	\subfigure[在COCO数据集中]{
+		\begin{minipage}[t]{0.5\linewidth}
+			\centering
+			\includegraphics[width=7cm, height=6cm]{figures/p4-4a.jpg}
+			%\caption{fig1}
+		\end{minipage}%
+	}%
+	\subfigure[在VOC数据集中比]{
+		\begin{minipage}[t]{0.5\linewidth}
+			\centering
+			\includegraphics[width=7cm, height=6cm]{figures/p4-4b.jpg}
+			%\caption{fig2}
+		\end{minipage}%
+	}%
+	\centering
+	\caption{不同p值精度比较}
 \end{figure}
 
 另一个有趣的观察是，当p=0时，我们可以得到MS-COCO上81:67\%和VOC 2007上93:15\%的映射，这仍然优于现有的方法。注意，当p=0时，我们本质上没有显式地合并标签相关性。改进得益于我们的ML-GCN模型通过共享的基于GCN的映射函数从先前的标签表示中学习对象分类器，该映射函数隐式地对标签依赖关系建模.
@@ -397,23 +414,23 @@ ML-GCN由两个输出维度分别为1024和2048的GCN层组成。对于标签表
 对于卷积层数是否越深越好本实验也做了探究，我们在表6中显示了我们的
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
-	\caption{卷积层深度影响}\label{fig:simuP1P2Result}
+	\includegraphics[width=0.75\textwidth]{figures/p4-5.png}
+	\caption{卷积层深度影响}\label{fig:p4-5}
 	\vspace{-1em}
 \end{figure}
 
 模型在不同数量的GCN层下的性能结果。对于三层模型，连续层的输出维数分别为1024、1024和2048。对于四层模型，维度为1024、1024、1024和2048。如图所示，当图卷积层数增加时，两个数据集上的多标签识别性能下降。性能下降的可能原因是，当使用更多的GCN层时，节点之间的传播将累积，这可能导致过度平滑。
 
 \subsection{不同类型的词嵌入方式影响}
-
-ML-GCN在不同类型的词嵌入下，该实验使用Glove\cite{Xue2011Correlative}作为标签表示，它作为堆叠GCN的输入，用于学习对象分类器。在这一部分中，我们评估了ML-GCN在其他类型的流行词汇表示下的性能。具体来说，我们研究了四种不同的单词嵌入方法，包括GloVe\cite{Xue2011Correlative}、GoogleNews\cite{Guo2011Multi}、FastText和simple-one-hot-word嵌入。图12显示了在MS-COCO和VOC 2007上使用不同单词嵌入的结果。如图所示，当使用不同的词嵌入作为GCN的输入时，多标签识别精度不会受到显著影响。此外，观察结果（尤其是一个hot的结果）证明，ML-GCN方法所获得的准确性改进并非完全来自于单词嵌入所产生的语义。此外，使用强大的单词嵌入可以带来更好的性能。对于语义相关的概念，它们的嵌入在嵌入空间中是紧密的。我们的模型可以利用这些隐含的依赖关系，进一步有利于多标签图像识别。
-
 \begin{figure}[htbp!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/p1p2figure.eps}
+	\includegraphics[width=0.75\textwidth]{figures/p4-6.jpg}
 	\caption{不同字嵌入方法的对比}\label{fig:simuP1P2Result}
 	\vspace{-1em}
 \end{figure}
+ML-GCN在不同类型的词嵌入下，该实验使用Glove\cite{Xue2011Correlative}作为标签表示，它作为堆叠GCN的输入，用于学习对象分类器。在这一部分中，我们评估了ML-GCN在其他类型的流行词汇表示下的性能。具体来说，我们研究了四种不同的单词嵌入方法，包括GloVe\cite{Xue2011Correlative}、GoogleNews\cite{Guo2011Multi}、FastText和simple-one-hot-word嵌入。图12显示了在MS-COCO和VOC 2007上使用不同单词嵌入的结果。如图所示，当使用不同的词嵌入作为GCN的输入时，多标签识别精度不会受到显著影响。此外，观察结果（尤其是一个hot的结果）证明，ML-GCN方法所获得的准确性改进并非完全来自于单词嵌入所产生的语义。此外，使用强大的单词嵌入可以带来更好的性能。对于语义相关的概念，它们的嵌入在嵌入空间中是紧密的。我们的模型可以利用这些隐含的依赖关系，进一步有利于多标签图像识别。
+
+
 
 \chapter{总结与展望}
 
